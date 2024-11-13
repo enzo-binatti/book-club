@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(45deg, red, blue);
+        }
+        /* Barra de navegação */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+        .navbar h1 {
+            margin: 0;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+        /* Banner */
+        .banner {
+            text-align: center;
+            background-color: #0000FF;
+            color: white;
+            padding: 60px 20px;
+        }
+        .banner h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .banner p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        /* Produtos em destaque */
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-item {
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-item h3 {
+            font-size: 1.2em;
+            margin: 10px 0 5px;
+        }
+        .product-item p {
+            color: #555;
+            margin: 5px 0;
+        }
+        .product-item .price {
+            font-weight: bold;
+            color: #333;
+            margin: 0px 0;
+        }
+        .product-item button {
+            padding: 10px;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .product-item button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de Navegação -->
+<div class="navbar">
+    <h1>Book Club</h1>
+    <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#carrinho">Carrinho</a></li>
+    </ul>
+</div>
+
+<!-- Banner Promocional -->
+<div class="banner">
+    <h2>Bem-vindo à Nossa Loja!</h2>
+    <p>Confira as melhores ofertas e novidades!</p>
+</div>
+
+<!-- Galeria de Produtos em Destaque -->
+<div class="product-gallery" id="produtos">
+    <div class="product-item">
+        <img src="produto1.jpg" alt="Produto 1">
+        <h3>Produto 1</h3>
+        <p>Descrição breve do produto 1.</p>
+        <p class="price">R$ 99,90</p>
+        <button>Comprar</button>
+    </div>
+    <div class="product-item">
+        <img src="produto2.jpg" alt="Produto 2">
+        <h3>Produto 2</h3>
+        <p>Descrição breve do produto 2.</p>
+        <p class="price">R$ 149,90</p>
+        <button>Comprar</button>
+    </div>
+    <div class="product-item">
+        <img src="produto3.jpg" alt="Produto 3">
+        <h3>Produto 3</h3>
+        <p>Descrição breve do produto 3.</p>
+        <p class="price">R$ 79,90</p>
+        <button>Comprar</button>
+    </div>
+    <div class="product-item">
+        <img src="produto4.jpg" alt="Produto 4">
+        <h4>Produto 4</h4>
+        <p>Descrição breve do produto 4.</p>
+        <p class="price">R$ 59,90</p>
+        <button>Comprar</button>
+    </div>
+</div>
+
+</body>
+</html>
