@@ -73,7 +73,7 @@
         <label for="confirmar_senha">Confirmar Senha</label>
         <input type="password" id="confirmar_senha" name="confirmar_senha" required>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit"><a href="pagina inicial.html">Cadastrar</a></button>
     </form>
 </div>
 
