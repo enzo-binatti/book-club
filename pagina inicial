@@ -103,12 +103,13 @@
 
 <!-- Barra de Navegação -->
 <div class="navbar">
-    <h1>Book Club</h1>
+    <h1>Book Club </h1>
     <ul>
         <li><a href="#home">Início</a></li>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#contato">Contato</a></li>
-        <li><a href="#carrinho">Carrinho</a></li>
+        <li><a href="#carrinho"> <type="submit"><a href="carrinho.html">carrinho</a></a></li>
+        <li><a href="#tela de configurações"> <type="submit"><a href="tela de configurações.html">configurações</a></a></li>    
     </ul>
 </div>
 
@@ -121,31 +122,31 @@
 <!-- Galeria de Produtos em Destaque -->
 <div class="product-gallery" id="produtos">
     <div class="product-item">
-        <img src="produto1.jpg" alt="Produto 1">
-        <h3>Produto 1</h3>
-        <p>Descrição breve do produto 1.</p>
-        <p class="price">R$ 99,90</p>
+        <img src="D:\Downloads\como convencer alguem.jpg" alt="Produto">
+        <h3>Como convencer alguém em 90 segundos</h3>
+        <p>Crie uma primeira impressão vendedora.</p>
+        <p class="price">R$ 33,17</p>
         <button>Comprar</button>
     </div>
     <div class="product-item">
-        <img src="produto2.jpg" alt="Produto 2">
-        <h3>Produto 2</h3>
-        <p>Descrição breve do produto 2.</p>
-        <p class="price">R$ 149,90</p>
+        <img src="D:\Downloads\As-Armas-da-Persuas_o.jpg" alt="Produto 2">
+        <h3>As armas da persuasão.</h3>
+        <p>Como influenciar enão se deixar influenciar.</p>
+        <p class="price">R$ 87,33</p>
         <button>Comprar</button>
     </div>
     <div class="product-item">
-        <img src="produto3.jpg" alt="Produto 3">
-        <h3>Produto 3</h3>
-        <p>Descrição breve do produto 3.</p>
-        <p class="price">R$ 79,90</p>
+        <img src="D:\Downloads\gatilhos mentais.jpg" alt="Produto 3">
+        <h3>Gatilhos mentais</h3>
+        <p>O guia completo com estratégias de negócios e comunicações provadas para você aplicar.</p>
+        <p class="price">R$ 60,70</p>
         <button>Comprar</button>
     </div>
-    <div class="product-item">
-        <img src="produto4.jpg" alt="Produto 4">
-        <h4>Produto 4</h4>
-        <p>Descrição breve do produto 4.</p>
-        <p class="price">R$ 59,90</p>
+     <div class="product-item">
+        <img src="D:\Downloads\999.jpg" alt="Produto 4">
+        <h3>A maquina definitiva de vendas</h3>
+        <p>Trabalhe seu negócio com um foco implacavel em 12 estratégias chave.</p>
+        <p class="price">R$ 280,00</p>
         <button>Comprar</button>
     </div>
 </div>
