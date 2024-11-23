@@ -108,7 +108,7 @@
         </tbody>
     </table>
     <div class="actions">
-        <a href="#produtos">Continuar Comprando</a>
+        <li><a href="#carrinho"> <type="submit"><a href="pagina inicial.html">continuar comprando</a></a></li>
         <button>Finalizar Compra</button>
     </div>
 </div>
