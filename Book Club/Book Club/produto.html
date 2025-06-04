@@ -3,585 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Produto</title>
+    <title>Detalhes do Produto - Book Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
     <style>
-        /* Estilo para o corpo da página */
-        body, html {
+        /* Variáveis CSS */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
+            --shadow-xl: 0 15px 25px rgba(0,0,0,0.15), 0 5px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Reset e Estilos Globais */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #000544;
-            color: white;
-            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        canvas {
-            display: block;
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar Moderna */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: -1;
-        }
-        
-        /* Container principal */
-        .main-container {
+            width: 100%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out forwards;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
         }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        /* Seção de detalhes do produto */
-        .product-section {
+
+        .logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-icons i:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Detalhe do Produto */
+        .product-details {
+            padding: 100px 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 900px;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(7px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            margin-bottom: 40px;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+            gap: 50px;
+            align-items: stretch;
         }
-        
-        .product-section.hide {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        
-        .product-image-container {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
+
         .product-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: contain;
+            flex: 1 1 400px;
+            overflow: hidden;
             border-radius: 12px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-md);
         }
-        
-        .product-image:hover {
-            transform: scale(1.02);
+
+        .product-image img {
+            width: 100%;
+            height: auto;
         }
-        
+
         .product-info {
-            flex: 2;
-            min-width: 300px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
+            flex: 1 1 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
         }
-        
-        .product-name {
-            font-size: 1.8em;
+
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 0.9rem;
             margin-bottom: 15px;
-            color: white;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        
+
         .product-description {
-            font-size: 1em;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            color: rgba(255, 255, 255, 0.9);
-            text-align: justify;
-        }
-        
-        .price-container {
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .price-label {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 5px;
-        }
-        
-        .product-price {
-            font-size: 2em;
-            font-weight: bold;
-            color: #4CAF50;
+            font-size: 1rem;
             margin-bottom: 20px;
         }
-        
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 1rem;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
         .add-to-cart {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1em;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 300px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        
+
         .add-to-cart:hover {
-            background: linear-gradient(135deg, #219150, #27ae60);
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-md);
         }
-        
-        .add-to-cart:active {
-            transform: translateY(0);
-        }
-        
-        /* Seção de produtos relacionados */
-        .related-products {
-            width: 100%;
-            max-width: 900px;
-            margin-top: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out 0.3s forwards;
-        }
-        
-        .section-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+
+        /* Rodapé */
+        footer {
+            background: var(--dark);
             color: white;
-            padding-bottom: 10px;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 60px 0 30px;
+            margin-top: 80px;
         }
-        
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
-        
-        .product-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
-            backdrop-filter: blur(7px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        .card-image {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .card-name {
-            font-size: 1em;
-            margin-bottom: 10px;
-            color: white;
-            font-weight: bold;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            height: 2.8em;
-        }
-        
-        .card-price {
-            font-size: 1.2em;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        
-        /* Responsividade */
+
         @media (max-width: 768px) {
-            .product-section {
+            .product-details {
                 flex-direction: column;
-            }
-            
-            .product-image-container, .product-info {
-                max-width: 100%;
-            }
-            
-            .add-to-cart {
-                max-width: 100%;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <canvas id="backgroundCanvas"></canvas>
-    <div class="main-container">
-        <div class="product-section" id="productDetail">
-            <div class="product-image-container">
-                <img id="productImage" class="product-image" src="" alt="Imagem do Produto">
-                <h2 class="product-name" id="productName"></h2>
-            </div>
-            <div class="product-info">
-                <p class="product-description" id="productDescription"></p>
-                <div class="price-container">
-                    <span class="price-label">Preço:</span>
-                    <span class="product-price" id="productPrice"></span>
-                </div>
-                <button class="add-to-cart" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-            </div>
-        </div>
-        
-        <div class="related-products" id="relatedProductsContainer">
-            <h3 class="section-title">Você também pode gostar</h3>
-            <div class="products-grid" id="relatedProducts">
-                <!-- Produtos relacionados serão inseridos aqui via JavaScript -->
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // Configuração do canvas de fundo
-        const canvas = document.getElementById('backgroundCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        
-        class Ball {
-            constructor(x, y, radius, color) {
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.color = color;
-                this.vx = Math.random() * 2 - 1;
-                this.vy = Math.random() * 2 - 1;
-            }
-            
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                ctx.closePath();
-            }
-            
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                
-                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-                    this.vx = -this.vx;
-                }
-                
-                if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-                    this.vy = -this.vy;
-                }
-                
-                this.draw();
-            }
-        }
-        
-        const balls = [];
-        const numBalls = 100;
-        const ballRadius = 3;
-        const ballColor = 'rgba(255, 255, 255, 0.8)';
-        
-        for (let i = 0; i < numBalls; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height;
-            balls.push(new Ball(x, y, ballRadius, ballColor));
-        }
-        
-        function connectBalls() {
-            for (let i = 0; i < balls.length; i++) {
-                for (let j = i + 1; j < balls.length; j++) {
-                    const dx = balls[j].x - balls[i].x;
-                    const dy = balls[j].y - balls[i].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.moveTo(balls[i].x, balls[i].y);
-                        ctx.lineTo(balls[j].x, balls[j].y);
-                        ctx.stroke();
-                        ctx.closePath();
-                    }
-                }
-            }
-        }
-        
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            balls.forEach(ball => ball.update());
-            connectBalls();
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
-        
-        // Dados dos produtos com URLs completas para imagens fictícias (substitua pelas suas imagens reais)
-        const products = [
-            { 
-                name: "Como Convencer Alguém em 90 Segundos", 
-                price: 33.17, 
-                description: "Como convencer alguém em 90 segundos é a garantia de uma comunicação de sucesso, transformando as conexões instantâneas em duradouras e produtivas relações de negócios. Neste livro, o especialista Nicholas Boothman ensina como usar o rosto, o corpo, a atitude e a voz para causar uma primeira impressão marcante, estabelecendo confiança imediata e criando fortes vínculos de credibilidade.", 
-                img: "90s.jpg",
-                category: "comunicacao"
-            },
-            { 
-                name: "As Armas da Persuasão", 
-                price: 87.33, 
-                description: "Depois de passar anos caindo na lábia de vendedores, arrecadadores de doações e operadores de telemarketing, o psicólogo Robert B. Cialdini resolveu se dedicar ao estudo da persuasão. Ele queria entender quais são os fatores que levam uma pessoa a dizer sim a um pedido e que técnicas exploram melhor esses fatores.", 
-                image: "https://m.media-amazon.com/images/I/81eG+U+1NJL._AC_UF1000,1000_QL80_.jpg",
-                category: "persuasao"
-            },
-            { 
-                name: "Gatilhos Mentais", 
-                price: 60.7, 
-                description: "A Coroa de Ferro dos Gatilhos Mentais (e os 4 gatilhos que realmente importam na sua comunicação). A Joia da Coroa (e o principal motivo que o impede de realizar mais vendas). 18 Gatilhos Emocionais (e como você ativa as principais emoções no seu cliente para que ele compre). Os 6 Gatilhos Lógicos (que ajudam seu cliente a confirmar a decisão de compra).", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "marketing"
-            },
-            { 
-                name: "A Máquina Definitiva de Vendas", 
-                price: 280, 
-                description: "A Máquina Definitiva de Vendas trata-se exclusivamente sobre trabalhar com mais inteligência e não mais duro. Não parece ser mais inteligente aperfeiçoar 12 estratégias comprovadas, do que enrolar-se todo usando centenas de ideias diferentes sem nenhuma conexão entre elas? Esse livro é para executivos, diretores executivos, empreendedores e profissionais como médicos, dentistas e advogados.", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "vendas"
-            },
-            { 
-                name: "A Arte Da Guerra", 
-                price: 49.9, 
-                description: "Elaborada há mais de 2500 anos, A Arte da Guerra é uma obra-prima da ciência militar cujos conceitos e ensinamentos influenciaram guerreiros da Antiguidade e continuam úteis para todos os tipos de líderes e estrategistas modernos. Um eterno best-seller entre apreciadores de estratégia política, de negócios e na vida cotidiana.", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "estrategia"
-            },
-            { 
-                name: "O Poder do Hábito", 
-                price: 44.9, 
-                description: "Durante os últimos dois anos, uma jovem transformou quase todos os aspectos de sua vida. Parou de fumar, correu uma maratona e foi promovida. Em um laboratório, neurologistas descobriram que os padrões dentro do cérebro dela mudaram de maneira fundamental. Publicitários da Procter & Gamble observaram vídeos de pessoas fazendo a cama.", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "desenvolvimento"
-            },
-            { 
-                name: "Mindset", 
-                price: 39.9, 
-                description: "Carol S. Dweck, ph.D., professora de psicologia na Universidade Stanford e especialista internacional em sucesso e motivação, desenvolveu, ao longo de décadas de pesquisa, um conceito fundamental: a atitude mental com que encaramos a vida, que ela chama de 'mindset', é crucial para o sucesso.", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "desenvolvimento"
-            },
-            { 
-                name: "Os 7 Hábitos das Pessoas Altamente Eficazes", 
-                price: 55, 
-                description: "Presença constante na lista de best-sellers, Os 7 hábitos das pessoas altamente eficazes agora em edição revista e ampliada, para comemorar seus 25 anos. Desde a primeira publicação da obra, muita coisa mudou no mundo empresarial e político.", 
-                image: "https://m.media-amazon.com/images/I/71JSMXijYgL._AC_UF1000,1000_QL80_.jpg",
-                category: "desenvolvimento"
-            }
-        ];
-        
-        // Carregar produto atual
-        const productName = new URLSearchParams(window.location.search).get('name');
-        const product = products.find(p => p.name === productName);
-        
-        if (product) {
-            document.getElementById('productImage').src = product.image;
-            document.getElementById('productName').textContent = product.name;
-            document.getElementById('productDescription').textContent = product.description;
-            document.getElementById('productPrice').textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
-            
-            // Carregar produtos relacionados (mesma categoria, excluindo o atual)
-            const relatedProducts = products
-                .filter(p => p.category === product.category && p.name !== product.name)
-                .slice(0, 4);
-            
-            // Se não tiver produtos suficientes da mesma categoria, completa com outros aleatórios
-            if (relatedProducts.length < 4) {
-                const additionalProducts = products
-                    .filter(p => p.category !== product.category && p.name !== product.name)
-                    .sort(() => 0.5 - Math.random())
-                    .slice(0, 4 - relatedProducts.length);
-                
-                relatedProducts.push(...additionalProducts);
-            }
-            
-            const relatedProductsContainer = document.getElementById('relatedProducts');
-            
-            relatedProducts.forEach((prod, index) => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.style.animationDelay = `${index * 0.1 + 0.3}s`;
-                productCard.innerHTML = `
-                    <img src="${prod.image}" alt="${prod.name}" class="card-image">
-                    <h4 class="card-name">${prod.name}</h4>
-                    <div class="card-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</div>
-                `;
-                productCard.addEventListener('click', () => {
-                    // Animação de saída antes de carregar novo produto
-                    document.querySelector('.product-section').classList.add('hide');
-                    document.getElementById('relatedProductsContainer').style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        window.location.href = `detalhes.html?name=${encodeURIComponent(prod.name)}`;
-                    }, 500);
-                });
-                relatedProductsContainer.appendChild(productCard);
-            });
-            
-        } else {
-            document.getElementById('productDetail').innerHTML = `
-                <div style="width: 100%; text-align: center; padding: 50px;">
-                    <h2>Produto não encontrado</h2>
-                    <p>O produto que você está procurando não está disponível no momento.</p>
-                    <a href="Book club.html" style="color: #4CAF50; text-decoration: none;">Voltar para a página inicial</a>
-                </div>
-            `;
-            document.getElementById('relatedProductsContainer').style.display = 'none';
-        }
-        
-        // Gerenciamento do carrinho
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
-        function addToCart(button) {
-            const name = document.getElementById('productName').textContent;
-            const price = parseFloat(document.getElementById('productPrice').textContent.replace('R$ ', '').replace(',', '.'));
-            const image = document.getElementById('productImage').src;
-            const existingProduct = cart.find(item => item.name === name);
-            
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1, image });
-            }
-            
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Feedback visual melhorado
-            button.disabled = true;
-            button.textContent = '✔ Adicionado ao Carrinho';
-            button.style.background = 'linear-gradient(135deg, #4CAF50, #2ecc71)';
-            
-            // Efeito de pulso
-            button.style.animation = 'pulse 0.5s ease';
-            setTimeout(() => {
-                button.style.animation = '';
-            }, 500);
-            
-            setTimeout(() => {
-                button.textContent = 'Adicionar ao Carrinho';
-                button.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
-                button.disabled = false;
-            }, 2000);
-        }
-        
-        // Adicionando estilo para o efeito de pulso
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-    <script src="produto.js">
-        // Fetch products from database
-fetch('get_products.php')
-    .then(response => response.json())
-    .then(products => {
-        const relatedProductsContainer = document.getElementById('relatedProductsContainer');
-        
-        // Clear existing content
-        relatedProductsContainer.innerHTML = '';
 
-        // Filter related products (for this example, show all)
-        products.forEach((prod, index) => {
-            const productCard = document.createElement('div');
-            productCard.className = 'product-card';
-            productCard.style.animationDelay = `${index * 0.1 + 0.3}s`;
-            productCard.innerHTML = `
-                <img src="${prod.cover_image}" alt="${prod.title}" class="card-image">
-                <h4 class="card-name">${prod.title}</h4>
-                <div class="card-price">R$ ${parseFloat(prod.price).toFixed(2).replace('.', ',')}</div>
-            `;
-            productCard.addEventListener('click', () => {
-                // Animação de saída antes de carregar novo produto
-                document.querySelector('.product-section').classList.add('hide');
-                document.getElementById('relatedProductsContainer').style.opacity = '0';
-                
-                setTimeout(() => {
-                    window.location.href = `detalhes.php?id=${prod.id}`;
-                }, 500);
-            });
-            relatedProductsContainer.appendChild(productCard);
-        });
-    })
-    .catch(error => {
-        console.error('Erro ao carregar produtos:', error);
-        relatedProductsContainer.innerHTML = `
-            <div style="width: 100%; text-align: center; padding: 50px;">
-                <h2>Erro ao carregar produtos</h2>
-                <p>Não foi possível carregar os produtos no momento.</p>
-            </div>
-        `;
-    });
-    </script>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo book.png" alt="Book Club Logo">
+        <span class="logo-text">Book Club</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="contato.html">Contato</a></li>
+    </ul>
+    <div class="nav-icons">
+        <a href="carrinho.html" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Detalhe do Produto -->
+<section class="product-details">
+    <!-- Imagem do Produto -->
+    <div class="product-image">
+        <img src="90s.jpg" alt="Como Convencer Alguém em 90 Segundos">
+    </div>
+
+    <!-- Informações do Produto -->
+    <div class="product-info">
+        <h2 class="product-title">Como Convencer Alguém em 90 Segundos</h2>
+        <span class="product-category">Negócios</span>
+        <p class="product-description">
+            Aprenda técnicas poderosas de persuasão rápida e eficaz, fundamentadas em anos de estudos comportamentais e práticas comerciais reais.
+        </p>
+        <div class="product-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>(128)</span>
+        </div>
+        <div class="product-price">
+            <span class="current-price">R$ 33,17</span>
+            <span class="old-price">R$ 39,90</span>
+        </div>
+        <button class="add-to-cart" onclick="addToCart('Como Convencer Alguém em 90 Segundos', 33.17)">
+            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+        </button>
+    </div>
+</section>
+
+<!-- Rodapé -->
+<footer>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Book Club. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // Atualizar contador do carrinho
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cartCount').textContent = totalItems;
+    }
+
+    // Adicionar ao carrinho
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = cart.find(item => item.name === name);
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+
+        // Notificação visual
+        const notification = document.createElement('div');
+        notification.style.position = 'fixed';
+        notification.style.bottom = '20px';
+        notification.style.right = '20px';
+        notification.style.backgroundColor = '#4BB543';
+        notification.style.color = 'white';
+        notification.style.padding = '15px 25px';
+        notification.style.borderRadius = '5px';
+        notification.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+        notification.style.zIndex = '1000';
+        notification.style.animation = 'slideIn 0.5s, fadeOut 0.5s 2.5s forwards';
+        notification.innerHTML = `<i class="fas fa-check-circle"></i> ${name} foi adicionado ao carrinho!`;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    // Atualizar contador ao carregar a página
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+
+    // Adicionar animação CSS dinamicamente
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
 </body>
 </html>
