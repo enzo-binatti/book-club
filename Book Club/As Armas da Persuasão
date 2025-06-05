@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Mesmo cabeçalho que o anterior -->
+    <title>As Armas da Persuasão | Book Club</title>
+</head>
+<body>
+    <!-- Navbar (igual à anterior) -->
+
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="Book Club.html">Home</a>
+            <span>/</span>
+            <a href="#">Psicologia</a>
+            <span>/</span>
+            <a href="#">Persuasão</a>
+            <span>/</span>
+            <span>As Armas da Persuasão</span>
+        </div>
+    </div>
+
+    <!-- Página de Produto -->
+    <section class="product-page">
+        <div class="container">
+            <div class="product-container">
+                <!-- Galeria de Imagens -->
+                <div class="product-gallery">
+                    <div class="thumbnail-list">
+                        <div class="thumbnail active" onclick="changeImage('As-Armas-da-Persuas_o.jpg')">
+                            <img src="As-Armas-da-Persuas_o.jpg" alt="Capa do Livro">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('armas-persuasao-2.jpg')">
+                            <img src="armas-persuasao-2.jpg" alt="Contra-capa do Livro">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('armas-persuasao-3.jpg')">
+                            <img src="armas-persuasao-3.jpg" alt="Páginas internas">
+                        </div>
+                    </div>
+                    
+                    <div class="main-image">
+                        <img src="As-Armas-da-Persuas_o.jpg" alt="As Armas da Persuasão" id="mainProductImage">
+                    </div>
+                </div>
+                
+                <!-- Informações do Produto -->
+                <div class="product-info">
+                    <h1 class="product-title">As Armas da Persuasão</h1>
+                    
+                    <div class="product-meta">
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="product-review-count">(96 avaliações)</span>
+                        </div>
+                        <span class="product-brand">Por Robert Cialdini</span>
+                    </div>
+                    
+                    <div class="product-price-container">
+                        <span class="current-price">R$ 87,33</span>
+                        <div class="product-availability">
+                            <i class="fas fa-check-circle"></i> Disponível em estoque
+                        </div>
+                    </div>
+                    
+                    <div class="product-description">
+                        <p>Neste clássico da psicologia social, Robert Cialdini revela os seis princípios universais da persuasão e como eles são usados para influenciar nossas decisões. Uma leitura essencial para quem quer entender os mecanismos por trás da influência.</p>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <!-- Mesmo código de ações que o anterior -->
+                    </div>
+                    
+                    <div class="product-delivery">
+                        <!-- Mesmo código de entrega que o anterior -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Abas de Informações -->
+            <div class="product-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" onclick="openTab('description')">Descrição</button>
+                    <button class="tab-btn" onclick="openTab('details')">Detalhes</button>
+                    <button class="tab-btn" onclick="openTab('reviews')">Avaliações</button>
+                    <button class="tab-btn" onclick="openTab('shipping')">Frete & Devolução</button>
+                </div>
+                
+                <div id="description" class="tab-content active">
+                    <h3>Sobre este livro</h3>
+                    <p>"As Armas da Persuasão" é um estudo seminal sobre os princípios psicológicos que levam as pessoas a dizer "sim" - e como aplicar esses princípios. Cialdini, um psicólogo social, passou anos estudando os padrões de comportamento que levam à persuasão.</p>
+                    
+                    <p>Os 6 princípios fundamentais:</p>
+                    <ul>
+                        <li><strong>Reciprocidade:</strong> As pessoas tendem a retribuir o que recebem</li>
+                        <li><strong>Compromisso e consistência:</strong> O desejo de ser consistente com compromissos anteriores</li>
+                        <li><strong>Prova social:</strong> As pessoas seguem o exemplo de outros semelhantes</li>
+                        <li><strong>Afeição:</strong> É mais fácil ser persuadido por pessoas de quem gostamos</li>
+                        <li><strong>Autoridade:</strong> A tendência de obedecer figuras de autoridade</li>
+                        <li><strong>Escassez:</strong> A percepção de que oportunidades são mais valiosas quando menos disponíveis</li>
+                    </ul>
+                </div>
+                
+                <div id="details" class="tab-content">
+                    <h3>Detalhes do produto</h3>
+                    <ul>
+                        <li><strong>Autor:</strong> Robert Cialdini</li>
+                        <li><strong>Editora:</strong> Sextante</li>
+                        <li><strong>Idioma:</strong> Português</li>
+                        <li><strong>Encadernação:</strong> Brochura</li>
+                        <li><strong>Número de páginas:</strong> 336</li>
+                        <li><strong>ISBN-10:</strong> 8543101559</li>
+                        <li><strong>ISBN-13:</strong> 978-8543101556</li>
+                        <li><strong>Dimensões:</strong> 22.8 x 15.6 x 1.8 cm</li>
+                        <li><strong>Peso:</strong> 480g</li>
+                        <li><strong>Data de publicação:</strong> 1 janeiro 2012</li>
+                    </ul>
+                </div>
+                
+                <!-- Outras abas (avaliações e frete) seguem o mesmo padrão -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Produtos Relacionados -->
+    <section class="related-products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quem comprou este livro também se interessou por</h2>
+                <p>Descubra outros títulos que podem te interessar</p>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Produtos relacionados -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter e Footer (iguais aos anteriores) -->
+    
+    <script>
+        // Mesmo JavaScript da página anterior
+    </script>
+</body>
+</html>

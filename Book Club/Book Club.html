@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -85,8 +86,8 @@
         }
 
         .logo img {
-            width: 40px;
-            height: 40px;
+            width: 70px;
+            height: 70px;
             object-fit: contain;
         }
 
@@ -839,7 +840,7 @@
                 <div class="product-item" data-name="A Máquina Definitiva de Vendas" data-price="280.00">
                     <div class="product-image">
                         <a href="produto.html">
-                            <img src="999.jpg" alt="A Máquina Definitiva de Vendas">
+                            <img src="a maquina.jpg" alt="A Máquina Definitiva de Vendas">
                         </a>
                         <div class="product-actions">
                             <button class="product-action-btn" title="Favoritar"><i class="far fa-heart"></i></button>
@@ -1122,6 +1123,12 @@
                 }
             });
         }
+            // Adiciona evento de tecla para a busca
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchProducts();
+      }
+    });
 
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
